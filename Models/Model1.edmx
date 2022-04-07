@@ -1,0 +1,742 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PROYECTAVANZADAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AUDITORIA_SALARIO">
+          <Key>
+            <PropertyRef Name="IDAUDITORIA_SALARIO" />
+          </Key>
+          <Property Name="IDAUDITORIA_SALARIO" Type="int" Nullable="false" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="CATEGORIA_AFECTADA" Type="int" Nullable="false" />
+          <Property Name="SALARIO_ANTERIOR" Type="float" />
+          <Property Name="SALARIO_NUEVO" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORIA_VENDEDOR">
+          <Key>
+            <PropertyRef Name="IDCATEGORIA" />
+          </Key>
+          <Property Name="IDCATEGORIA" Type="int" Nullable="false" />
+          <Property Name="IDSALARIO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="IDCLIENTE" />
+          </Key>
+          <Property Name="IDCLIENTE" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FACTURA">
+          <Key>
+            <PropertyRef Name="IDFACTURA" />
+          </Key>
+          <Property Name="IDFACTURA" Type="int" Nullable="false" />
+          <Property Name="IDVENTA" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="INVENTARIO">
+          <Key>
+            <PropertyRef Name="IDINVENTARIO" />
+          </Key>
+          <Property Name="IDINVENTARIO" Type="int" Nullable="false" />
+          <Property Name="IDPRODUCTO" Type="int" Nullable="false" />
+          <Property Name="CANTIDAD_COMPRADA" Type="int" Nullable="false" />
+          <Property Name="STOCK" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="IDPRODUCTO" />
+          </Key>
+          <Property Name="IDPRODUCTO" Type="int" Nullable="false" />
+          <Property Name="IDPROVEEDOR" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="PRECIO" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROVEEDOR">
+          <Key>
+            <PropertyRef Name="IDPROVEEDOR" />
+          </Key>
+          <Property Name="IDPROVEEDOR" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SALARIO">
+          <Key>
+            <PropertyRef Name="IDSALARIO" />
+          </Key>
+          <Property Name="IDSALARIO" Type="int" Nullable="false" />
+          <Property Name="SALARIO" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+          </Key>
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PASWORD" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VENDEDOR">
+          <Key>
+            <PropertyRef Name="IDVENDEDOR" />
+          </Key>
+          <Property Name="IDVENDEDOR" Type="int" Nullable="false" />
+          <Property Name="IDCATEGORIA" Type="int" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VENTA">
+          <Key>
+            <PropertyRef Name="IDVENTA" />
+          </Key>
+          <Property Name="IDVENTA" Type="int" Nullable="false" />
+          <Property Name="IDPRODUCTO" Type="int" Nullable="false" />
+          <Property Name="IDVENDEDOR" Type="int" Nullable="false" />
+          <Property Name="IDCLIENTE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VENTAXPRODUCTO">
+          <Key>
+            <PropertyRef Name="IDVENTA" />
+            <PropertyRef Name="IDPRODUCTO" />
+          </Key>
+          <Property Name="IDVENTA" Type="int" Nullable="false" />
+          <Property Name="IDPRODUCTO" Type="int" Nullable="false" />
+          <Property Name="CANTIDAD" Type="int" Nullable="false" />
+          <Property Name="DESCUENTO" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CATEGORIA_VENDEDOR_IDSALARIO">
+          <End Role="SALARIO" Type="Self.SALARIO" Multiplicity="1" />
+          <End Role="CATEGORIA_VENDEDOR" Type="Self.CATEGORIA_VENDEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALARIO">
+              <PropertyRef Name="IDSALARIO" />
+            </Principal>
+            <Dependent Role="CATEGORIA_VENDEDOR">
+              <PropertyRef Name="IDSALARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURA_IDVENTA">
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="1" />
+          <End Role="FACTURA" Type="Self.FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENTA">
+              <PropertyRef Name="IDVENTA" />
+            </Principal>
+            <Dependent Role="FACTURA">
+              <PropertyRef Name="IDVENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVENTARIO_IDPRODUCTO">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_IDPROVEEDOR">
+          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDOR">
+              <PropertyRef Name="IDPROVEEDOR" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="IDPROVEEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENDEDOR_IDCATEGORIA">
+          <End Role="CATEGORIA_VENDEDOR" Type="Self.CATEGORIA_VENDEDOR" Multiplicity="1" />
+          <End Role="VENDEDOR" Type="Self.VENDEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA_VENDEDOR">
+              <PropertyRef Name="IDCATEGORIA" />
+            </Principal>
+            <Dependent Role="VENDEDOR">
+              <PropertyRef Name="IDCATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTA_IDCLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="IDCLIENTE" />
+            </Principal>
+            <Dependent Role="VENTA">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTA_IDPRODUCTO">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Principal>
+            <Dependent Role="VENTA">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTA_IDVENDEDOR">
+          <End Role="VENDEDOR" Type="Self.VENDEDOR" Multiplicity="1" />
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENDEDOR">
+              <PropertyRef Name="IDVENDEDOR" />
+            </Principal>
+            <Dependent Role="VENTA">
+              <PropertyRef Name="IDVENDEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTAXPRODUCTO_IDPRODUCTO">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+          <End Role="VENTAXPRODUCTO" Type="Self.VENTAXPRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Principal>
+            <Dependent Role="VENTAXPRODUCTO">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTAXPRODUCTO_IDVENTA">
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="1" />
+          <End Role="VENTAXPRODUCTO" Type="Self.VENTAXPRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENTA">
+              <PropertyRef Name="IDVENTA" />
+            </Principal>
+            <Dependent Role="VENTAXPRODUCTO">
+              <PropertyRef Name="IDVENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PROYECTAVANZADAModelStoreContainer">
+          <EntitySet Name="AUDITORIA_SALARIO" EntityType="Self.AUDITORIA_SALARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATEGORIA_VENDEDOR" EntityType="Self.CATEGORIA_VENDEDOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACTURA" EntityType="Self.FACTURA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALARIO" EntityType="Self.SALARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VENDEDOR" EntityType="Self.VENDEDOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VENTA" EntityType="Self.VENTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VENTAXPRODUCTO" EntityType="Self.VENTAXPRODUCTO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CATEGORIA_VENDEDOR_IDSALARIO" Association="Self.FK_CATEGORIA_VENDEDOR_IDSALARIO">
+            <End Role="SALARIO" EntitySet="SALARIO" />
+            <End Role="CATEGORIA_VENDEDOR" EntitySet="CATEGORIA_VENDEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURA_IDVENTA" Association="Self.FK_FACTURA_IDVENTA">
+            <End Role="VENTA" EntitySet="VENTA" />
+            <End Role="FACTURA" EntitySet="FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVENTARIO_IDPRODUCTO" Association="Self.FK_INVENTARIO_IDPRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_IDPROVEEDOR" Association="Self.FK_PRODUCTO_IDPROVEEDOR">
+            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENDEDOR_IDCATEGORIA" Association="Self.FK_VENDEDOR_IDCATEGORIA">
+            <End Role="CATEGORIA_VENDEDOR" EntitySet="CATEGORIA_VENDEDOR" />
+            <End Role="VENDEDOR" EntitySet="VENDEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTA_IDCLIENTE" Association="Self.FK_VENTA_IDCLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="VENTA" EntitySet="VENTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTA_IDPRODUCTO" Association="Self.FK_VENTA_IDPRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="VENTA" EntitySet="VENTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTA_IDVENDEDOR" Association="Self.FK_VENTA_IDVENDEDOR">
+            <End Role="VENDEDOR" EntitySet="VENDEDOR" />
+            <End Role="VENTA" EntitySet="VENTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTAXPRODUCTO_IDPRODUCTO" Association="Self.FK_VENTAXPRODUCTO_IDPRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="VENTAXPRODUCTO" EntitySet="VENTAXPRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTAXPRODUCTO_IDVENTA" Association="Self.FK_VENTAXPRODUCTO_IDVENTA">
+            <End Role="VENTA" EntitySet="VENTA" />
+            <End Role="VENTAXPRODUCTO" EntitySet="VENTAXPRODUCTO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PROYECTAVANZADAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AUDITORIA_SALARIO">
+          <Key>
+            <PropertyRef Name="IDAUDITORIA_SALARIO" />
+          </Key>
+          <Property Name="IDAUDITORIA_SALARIO" Type="Int32" Nullable="false" />
+          <Property Name="USUARIO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CATEGORIA_AFECTADA" Type="Int32" Nullable="false" />
+          <Property Name="SALARIO_ANTERIOR" Type="Double" />
+          <Property Name="SALARIO_NUEVO" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORIA_VENDEDOR">
+          <Key>
+            <PropertyRef Name="IDCATEGORIA" />
+          </Key>
+          <Property Name="IDCATEGORIA" Type="Int32" Nullable="false" />
+          <Property Name="IDSALARIO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SALARIO" Relationship="Self.FK_CATEGORIA_VENDEDOR_IDSALARIO" FromRole="CATEGORIA_VENDEDOR" ToRole="SALARIO" />
+          <NavigationProperty Name="VENDEDORs" Relationship="Self.FK_VENDEDOR_IDCATEGORIA" FromRole="CATEGORIA_VENDEDOR" ToRole="VENDEDOR" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="IDCLIENTE" />
+          </Key>
+          <Property Name="IDCLIENTE" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="VENTAs" Relationship="Self.FK_VENTA_IDCLIENTE" FromRole="CLIENTE" ToRole="VENTA" />
+        </EntityType>
+        <EntityType Name="FACTURA">
+          <Key>
+            <PropertyRef Name="IDFACTURA" />
+          </Key>
+          <Property Name="IDFACTURA" Type="Int32" Nullable="false" />
+          <Property Name="IDVENTA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VENTA" Relationship="Self.FK_FACTURA_IDVENTA" FromRole="FACTURA" ToRole="VENTA" />
+        </EntityType>
+        <EntityType Name="INVENTARIO">
+          <Key>
+            <PropertyRef Name="IDINVENTARIO" />
+          </Key>
+          <Property Name="IDINVENTARIO" Type="Int32" Nullable="false" />
+          <Property Name="IDPRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD_COMPRADA" Type="Int32" Nullable="false" />
+          <Property Name="STOCK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_INVENTARIO_IDPRODUCTO" FromRole="INVENTARIO" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="IDPRODUCTO" />
+          </Key>
+          <Property Name="IDPRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="IDPROVEEDOR" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRECIO" Type="Double" Nullable="false" />
+          <NavigationProperty Name="INVENTARIOs" Relationship="Self.FK_INVENTARIO_IDPRODUCTO" FromRole="PRODUCTO" ToRole="INVENTARIO" />
+          <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK_PRODUCTO_IDPROVEEDOR" FromRole="PRODUCTO" ToRole="PROVEEDOR" />
+          <NavigationProperty Name="VENTAs" Relationship="Self.FK_VENTA_IDPRODUCTO" FromRole="PRODUCTO" ToRole="VENTA" />
+          <NavigationProperty Name="VENTAXPRODUCTOes" Relationship="Self.FK_VENTAXPRODUCTO_IDPRODUCTO" FromRole="PRODUCTO" ToRole="VENTAXPRODUCTO" />
+        </EntityType>
+        <EntityType Name="PROVEEDOR">
+          <Key>
+            <PropertyRef Name="IDPROVEEDOR" />
+          </Key>
+          <Property Name="IDPROVEEDOR" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PRODUCTOes" Relationship="Self.FK_PRODUCTO_IDPROVEEDOR" FromRole="PROVEEDOR" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="SALARIO">
+          <Key>
+            <PropertyRef Name="IDSALARIO" />
+          </Key>
+          <Property Name="IDSALARIO" Type="Int32" Nullable="false" />
+          <Property Name="SALARIO1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CATEGORIA_VENDEDOR" Relationship="Self.FK_CATEGORIA_VENDEDOR_IDSALARIO" FromRole="SALARIO" ToRole="CATEGORIA_VENDEDOR" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+          </Key>
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASWORD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VENDEDOR">
+          <Key>
+            <PropertyRef Name="IDVENDEDOR" />
+          </Key>
+          <Property Name="IDVENDEDOR" Type="Int32" Nullable="false" />
+          <Property Name="IDCATEGORIA" Type="Int32" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CATEGORIA_VENDEDOR" Relationship="Self.FK_VENDEDOR_IDCATEGORIA" FromRole="VENDEDOR" ToRole="CATEGORIA_VENDEDOR" />
+          <NavigationProperty Name="VENTAs" Relationship="Self.FK_VENTA_IDVENDEDOR" FromRole="VENDEDOR" ToRole="VENTA" />
+        </EntityType>
+        <EntityType Name="VENTA">
+          <Key>
+            <PropertyRef Name="IDVENTA" />
+          </Key>
+          <Property Name="IDVENTA" Type="Int32" Nullable="false" />
+          <Property Name="IDPRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="IDVENDEDOR" Type="Int32" Nullable="false" />
+          <Property Name="IDCLIENTE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK_VENTA_IDCLIENTE" FromRole="VENTA" ToRole="CLIENTE" />
+          <NavigationProperty Name="FACTURAs" Relationship="Self.FK_FACTURA_IDVENTA" FromRole="VENTA" ToRole="FACTURA" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_VENTA_IDPRODUCTO" FromRole="VENTA" ToRole="PRODUCTO" />
+          <NavigationProperty Name="VENDEDOR" Relationship="Self.FK_VENTA_IDVENDEDOR" FromRole="VENTA" ToRole="VENDEDOR" />
+          <NavigationProperty Name="VENTAXPRODUCTOes" Relationship="Self.FK_VENTAXPRODUCTO_IDVENTA" FromRole="VENTA" ToRole="VENTAXPRODUCTO" />
+        </EntityType>
+        <EntityType Name="VENTAXPRODUCTO">
+          <Key>
+            <PropertyRef Name="IDVENTA" />
+            <PropertyRef Name="IDPRODUCTO" />
+          </Key>
+          <Property Name="IDVENTA" Type="Int32" Nullable="false" />
+          <Property Name="IDPRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
+          <Property Name="DESCUENTO" Type="Double" Nullable="false" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_VENTAXPRODUCTO_IDPRODUCTO" FromRole="VENTAXPRODUCTO" ToRole="PRODUCTO" />
+          <NavigationProperty Name="VENTA" Relationship="Self.FK_VENTAXPRODUCTO_IDVENTA" FromRole="VENTAXPRODUCTO" ToRole="VENTA" />
+        </EntityType>
+        <Association Name="FK_CATEGORIA_VENDEDOR_IDSALARIO">
+          <End Role="SALARIO" Type="Self.SALARIO" Multiplicity="1" />
+          <End Role="CATEGORIA_VENDEDOR" Type="Self.CATEGORIA_VENDEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALARIO">
+              <PropertyRef Name="IDSALARIO" />
+            </Principal>
+            <Dependent Role="CATEGORIA_VENDEDOR">
+              <PropertyRef Name="IDSALARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENDEDOR_IDCATEGORIA">
+          <End Role="CATEGORIA_VENDEDOR" Type="Self.CATEGORIA_VENDEDOR" Multiplicity="1" />
+          <End Role="VENDEDOR" Type="Self.VENDEDOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA_VENDEDOR">
+              <PropertyRef Name="IDCATEGORIA" />
+            </Principal>
+            <Dependent Role="VENDEDOR">
+              <PropertyRef Name="IDCATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTA_IDCLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="IDCLIENTE" />
+            </Principal>
+            <Dependent Role="VENTA">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURA_IDVENTA">
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="1" />
+          <End Role="FACTURA" Type="Self.FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENTA">
+              <PropertyRef Name="IDVENTA" />
+            </Principal>
+            <Dependent Role="FACTURA">
+              <PropertyRef Name="IDVENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INVENTARIO_IDPRODUCTO">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_IDPROVEEDOR">
+          <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVEEDOR">
+              <PropertyRef Name="IDPROVEEDOR" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="IDPROVEEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTA_IDPRODUCTO">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Principal>
+            <Dependent Role="VENTA">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTAXPRODUCTO_IDPRODUCTO">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+          <End Role="VENTAXPRODUCTO" Type="Self.VENTAXPRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Principal>
+            <Dependent Role="VENTAXPRODUCTO">
+              <PropertyRef Name="IDPRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTA_IDVENDEDOR">
+          <End Role="VENDEDOR" Type="Self.VENDEDOR" Multiplicity="1" />
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENDEDOR">
+              <PropertyRef Name="IDVENDEDOR" />
+            </Principal>
+            <Dependent Role="VENTA">
+              <PropertyRef Name="IDVENDEDOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VENTAXPRODUCTO_IDVENTA">
+          <End Role="VENTA" Type="Self.VENTA" Multiplicity="1" />
+          <End Role="VENTAXPRODUCTO" Type="Self.VENTAXPRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VENTA">
+              <PropertyRef Name="IDVENTA" />
+            </Principal>
+            <Dependent Role="VENTAXPRODUCTO">
+              <PropertyRef Name="IDVENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PrograAvanzadaProyectoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AUDITORIA_SALARIO" EntityType="Self.AUDITORIA_SALARIO" />
+          <EntitySet Name="CATEGORIA_VENDEDOR" EntityType="Self.CATEGORIA_VENDEDOR" />
+          <EntitySet Name="CLIENTEs" EntityType="Self.CLIENTE" />
+          <EntitySet Name="FACTURAs" EntityType="Self.FACTURA" />
+          <EntitySet Name="INVENTARIOs" EntityType="Self.INVENTARIO" />
+          <EntitySet Name="PRODUCTOes" EntityType="Self.PRODUCTO" />
+          <EntitySet Name="PROVEEDORs" EntityType="Self.PROVEEDOR" />
+          <EntitySet Name="SALARIOs" EntityType="Self.SALARIO" />
+          <EntitySet Name="USUARIOs" EntityType="Self.USUARIO" />
+          <EntitySet Name="VENDEDORs" EntityType="Self.VENDEDOR" />
+          <EntitySet Name="VENTAs" EntityType="Self.VENTA" />
+          <EntitySet Name="VENTAXPRODUCTOes" EntityType="Self.VENTAXPRODUCTO" />
+          <AssociationSet Name="FK_CATEGORIA_VENDEDOR_IDSALARIO" Association="Self.FK_CATEGORIA_VENDEDOR_IDSALARIO">
+            <End Role="SALARIO" EntitySet="SALARIOs" />
+            <End Role="CATEGORIA_VENDEDOR" EntitySet="CATEGORIA_VENDEDOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENDEDOR_IDCATEGORIA" Association="Self.FK_VENDEDOR_IDCATEGORIA">
+            <End Role="CATEGORIA_VENDEDOR" EntitySet="CATEGORIA_VENDEDOR" />
+            <End Role="VENDEDOR" EntitySet="VENDEDORs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTA_IDCLIENTE" Association="Self.FK_VENTA_IDCLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTEs" />
+            <End Role="VENTA" EntitySet="VENTAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURA_IDVENTA" Association="Self.FK_FACTURA_IDVENTA">
+            <End Role="VENTA" EntitySet="VENTAs" />
+            <End Role="FACTURA" EntitySet="FACTURAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INVENTARIO_IDPRODUCTO" Association="Self.FK_INVENTARIO_IDPRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTOes" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIOs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_IDPROVEEDOR" Association="Self.FK_PRODUCTO_IDPROVEEDOR">
+            <End Role="PROVEEDOR" EntitySet="PROVEEDORs" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTA_IDPRODUCTO" Association="Self.FK_VENTA_IDPRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTOes" />
+            <End Role="VENTA" EntitySet="VENTAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTAXPRODUCTO_IDPRODUCTO" Association="Self.FK_VENTAXPRODUCTO_IDPRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTOes" />
+            <End Role="VENTAXPRODUCTO" EntitySet="VENTAXPRODUCTOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTA_IDVENDEDOR" Association="Self.FK_VENTA_IDVENDEDOR">
+            <End Role="VENDEDOR" EntitySet="VENDEDORs" />
+            <End Role="VENTA" EntitySet="VENTAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VENTAXPRODUCTO_IDVENTA" Association="Self.FK_VENTAXPRODUCTO_IDVENTA">
+            <End Role="VENTA" EntitySet="VENTAs" />
+            <End Role="VENTAXPRODUCTO" EntitySet="VENTAXPRODUCTOes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PROYECTAVANZADAModelStoreContainer" CdmEntityContainer="PrograAvanzadaProyectoEntities">
+          <EntitySetMapping Name="AUDITORIA_SALARIO">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.AUDITORIA_SALARIO">
+              <MappingFragment StoreEntitySet="AUDITORIA_SALARIO">
+                <ScalarProperty Name="IDAUDITORIA_SALARIO" ColumnName="IDAUDITORIA_SALARIO" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="CATEGORIA_AFECTADA" ColumnName="CATEGORIA_AFECTADA" />
+                <ScalarProperty Name="SALARIO_ANTERIOR" ColumnName="SALARIO_ANTERIOR" />
+                <ScalarProperty Name="SALARIO_NUEVO" ColumnName="SALARIO_NUEVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIA_VENDEDOR">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.CATEGORIA_VENDEDOR">
+              <MappingFragment StoreEntitySet="CATEGORIA_VENDEDOR">
+                <ScalarProperty Name="IDCATEGORIA" ColumnName="IDCATEGORIA" />
+                <ScalarProperty Name="IDSALARIO" ColumnName="IDSALARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTEs">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURAs">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.FACTURA">
+              <MappingFragment StoreEntitySet="FACTURA">
+                <ScalarProperty Name="IDFACTURA" ColumnName="IDFACTURA" />
+                <ScalarProperty Name="IDVENTA" ColumnName="IDVENTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INVENTARIOs">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.INVENTARIO">
+              <MappingFragment StoreEntitySet="INVENTARIO">
+                <ScalarProperty Name="IDINVENTARIO" ColumnName="IDINVENTARIO" />
+                <ScalarProperty Name="IDPRODUCTO" ColumnName="IDPRODUCTO" />
+                <ScalarProperty Name="CANTIDAD_COMPRADA" ColumnName="CANTIDAD_COMPRADA" />
+                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOes">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.PRODUCTO">
+              <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="IDPRODUCTO" ColumnName="IDPRODUCTO" />
+                <ScalarProperty Name="IDPROVEEDOR" ColumnName="IDPROVEEDOR" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVEEDORs">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.PROVEEDOR">
+              <MappingFragment StoreEntitySet="PROVEEDOR">
+                <ScalarProperty Name="IDPROVEEDOR" ColumnName="IDPROVEEDOR" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALARIOs">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.SALARIO">
+              <MappingFragment StoreEntitySet="SALARIO">
+                <ScalarProperty Name="IDSALARIO" ColumnName="IDSALARIO" />
+                <ScalarProperty Name="SALARIO1" ColumnName="SALARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOs">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASWORD" ColumnName="PASWORD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENDEDORs">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.VENDEDOR">
+              <MappingFragment StoreEntitySet="VENDEDOR">
+                <ScalarProperty Name="IDVENDEDOR" ColumnName="IDVENDEDOR" />
+                <ScalarProperty Name="IDCATEGORIA" ColumnName="IDCATEGORIA" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENTAs">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.VENTA">
+              <MappingFragment StoreEntitySet="VENTA">
+                <ScalarProperty Name="IDVENTA" ColumnName="IDVENTA" />
+                <ScalarProperty Name="IDPRODUCTO" ColumnName="IDPRODUCTO" />
+                <ScalarProperty Name="IDVENDEDOR" ColumnName="IDVENDEDOR" />
+                <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VENTAXPRODUCTOes">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.VENTAXPRODUCTO">
+              <MappingFragment StoreEntitySet="VENTAXPRODUCTO">
+                <ScalarProperty Name="IDVENTA" ColumnName="IDVENTA" />
+                <ScalarProperty Name="IDPRODUCTO" ColumnName="IDPRODUCTO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="DESCUENTO" ColumnName="DESCUENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

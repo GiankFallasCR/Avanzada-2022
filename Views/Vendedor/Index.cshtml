@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ProyectAvanzada.Models.VENDEDOR>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Agregar nuevo ", "Create", null, new { @class = "btn btn-success boton_agregar" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDCATEGORIA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMAIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDCATEGORIA)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IDVENDEDOR }, new { @class = " btn btn-info  boton_editar" }) 
+            @Html.ActionLink("Detalles", "Details", new { id=item.IDVENDEDOR }, new { @class = " btn btn-success  boton_detalles" }) 
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IDVENDEDOR }, new { @class = " btn btn-danger  boton_eliminar" })
+        </td>
+    </tr>
+}
+
+</table>

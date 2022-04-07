@@ -1,0 +1,49 @@
+﻿@model ProyectAvanzada.Models.PRODUCTO
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>DESEA BORRAR EL ITEM SELECCIONADO?</h3>
+<div>
+    <h4>PRODUCTO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRECIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRECIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROVEEDOR.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROVEEDOR.NOMBRE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

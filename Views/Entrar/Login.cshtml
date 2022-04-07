@@ -1,0 +1,68 @@
+﻿@model ProyectAvanzada.Claasses.Login
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="~/css/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/jquery.jdSlider.css" rel="stylesheet" />
+    <link href="~/Content/jquery.pano.css" rel="stylesheet" />
+    <link href="~/css/jquery.jdSlider.css" rel="stylesheet" />
+    <link href="~/css/jquery.pano.css" rel="stylesheet" />
+    <link href="~/css/jquery.pano.css" rel="stylesheet" />
+
+    <title>Login</title>
+
+</head>
+
+
+<body class="">
+    <main class="wrapper">
+        <div class="left-container">
+            <div class="inner-left-container">
+                <h2>Inicio de Sesion</h2>
+                <hr>
+            </div>
+
+
+        </div>
+        <div class="right-container">
+
+
+            <div id="form-signup" class="loginform">
+
+                @using (Html.BeginForm())
+                {
+                    <h3> @Html.LabelFor(d => d.EMAIL)</h3>
+
+                    @Html.TextBoxFor(d => d.EMAIL, new { @class = "form-input", @placeholder = "NOMBRE DE USUARIO" })
+
+                    <h3>@Html.LabelFor(k => k.PASWORD)</h3>
+                    @Html.PasswordFor(k => k.PASWORD, new { @class = "form-input", @placeholder = "Ingrese Contraseña" })
+                    <br>
+                    <button id="submit-button-signup">Ingresar</button>
+                }
+                <br />
+                @TempData["Mensaje"]
+            </div>
+
+
+        </div>
+    </main>
+    <script src="~/js/jquery.slim.js"></script>
+    <script src="~/js/tether.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.pano.js"></script>
+
+   
+</body>
+
+
+</html>

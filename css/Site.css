@@ -1,0 +1,160 @@
+﻿
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.left-container {
+    width: 45%;
+    height: 100%;
+    background: linear-gradient( 180deg, rgba(55, 240, 155, 1) 0%, rgba(103, 127, 236, 1) 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 50px;
+}
+
+    .left-container hr {
+        width: 40px;
+        border: 2px solid white;
+        margin-top: 5px;
+    }
+
+#arrow-icon {
+    position: absolute;
+    right: -35px;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    border: none;
+    background: #6584e8;
+    color: white;
+}
+
+.right-container {
+    padding: 100px;
+    width: 55%;
+    color: #6584e8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#method-change {
+    margin-left: 70%;
+}
+
+    #method-change button {
+        display: inline block;
+        padding: 5px 10px 5px 10px;
+        border: 1px solid #6584e8;
+        text-decoration: none;
+        background: none;
+        cursor: pointer;
+    }
+
+#sign-up {
+    color: white;
+    background-color: #6584e8;
+}
+
+#form-signup {
+    margin-top: 20px;
+}
+
+.form-input {
+    display: inline block;
+    border: none;
+    border-bottom: 0.15rem solid #6584e8;
+    width: 70%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-left: 0px;
+}
+
+h3 {
+    margin-top: 15px;
+}
+
+#submit-button-signup {
+    display: inline block;
+    padding: 15px 50px;
+    margin-top: 20px;
+    border: none;
+    color: white;
+    background: #6584e8;
+}
+
+#method-change #button-signup-mc {
+    background-color: #6584e8;
+    color: white;
+}
+
+#form-signup label {
+    font-size: 0.8em;
+}
+
+#anchor-terms {
+    text-decoration: none;
+    color: #3ae9a0;
+}
+
+#button-login {
+    display: inline block;
+    padding: 15px 50px;
+    margin-top: 20px;
+    border: none;
+    color: white;
+    background: #6584e8;
+}
+
+@media all and (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .left-container {
+        width: 100%;
+        padding: 100px 30px;
+        background: linear-gradient( 90deg, rgba(55, 240, 155, 1) 0%, rgba(103, 127, 236, 1) 100%);
+    }
+
+    #arrow-icon {
+        bottom: -40px;
+        height: 75px;
+        width: 75px;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        transform: rotate(90deg);
+        border-radius: 50%;
+        border: none;
+        background: #6584e8;
+        color: white;
+    }
+
+    .right-container {
+        width: 90%;
+        padding: 40px 10px;
+        margin: 0 auto;
+    }
+
+    #method-change {
+        margin: 10px auto;
+    }
+
+    .form-input {
+        width: 100%;
+    }
+}

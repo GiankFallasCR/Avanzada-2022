@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c41c43302f91491082dc13689185fae8" Name="Diagram1">
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.AUDITORIA_SALARIO" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.CATEGORIA_VENDEDOR" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.CLIENTE" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.FACTURA" Width="1.5" PointX="9.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.INVENTARIO" Width="1.5" PointX="7.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.PRODUCTO" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.PROVEEDOR" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.SALARIO" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.USUARIO" Width="1.5" PointX="7.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.VENDEDOR" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.VENTA" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.VENTAXPRODUCTO" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="PROYECTAVANZADAModel.FK_CATEGORIA_VENDEDOR_IDSALARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTAVANZADAModel.FK_VENDEDOR_IDCATEGORIA" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTAVANZADAModel.FK_VENTA_IDCLIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTAVANZADAModel.FK_FACTURA_IDVENTA" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTAVANZADAModel.FK_INVENTARIO_IDPRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTAVANZADAModel.FK_PRODUCTO_IDPROVEEDOR" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTAVANZADAModel.FK_VENTA_IDPRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTAVANZADAModel.FK_VENTAXPRODUCTO_IDPRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTAVANZADAModel.FK_VENTA_IDVENDEDOR" ManuallyRouted="false" />
+        <AssociationConnector Association="PROYECTAVANZADAModel.FK_VENTAXPRODUCTO_IDVENTA" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

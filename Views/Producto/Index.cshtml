@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ProyectAvanzada.Models.PRODUCTO>
+
+@{
+    ViewBag.Title = "PRODUCTOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Agregar nuevo ", "Create", null, new { @class = "btn btn-success boton_agregar" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRECIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROVEEDOR.NOMBRE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRECIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROVEEDOR.NOMBRE)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IDPRODUCTO }, new { @class = " btn btn-info  boton_editar" }) 
+            @Html.ActionLink("Detalles", "Details", new { id=item.IDPRODUCTO }, new { @class = " btn btn-success  boton_detalles" }) 
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.IDPRODUCTO }, new { @class = " btn btn-danger  boton_eliminar" })
+        </td>
+    </tr>
+}
+
+</table>
