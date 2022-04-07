@@ -16,7 +16,7 @@ namespace ProyectAvanzada.Claasses
         public bool Autenticacion()
         {
           
-            if (db.USUARIO.Where(u => u.EMAIL == this.EMAIL && u.PASWORD == this.PASWORD).FirstOrDefault() != null)
+            if (db.USUARIOS.Where(u => u.EMAIL == this.EMAIL && u.PASWORD == this.PASWORD).FirstOrDefault() != null)
             {
                 return true;
             }

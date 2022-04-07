@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c41c43302f91491082dc13689185fae8" Name="Diagram1">
+      <Diagram DiagramId="fca7af50daf54015afdc27802ed71d4b" Name="Diagram1">
         <EntityTypeShape EntityType="PROYECTAVANZADAModel.AUDITORIA_SALARIO" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PROYECTAVANZADAModel.CATEGORIA_VENDEDOR" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="PROYECTAVANZADAModel.CLIENTE" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
@@ -13,7 +13,8 @@
         <EntityTypeShape EntityType="PROYECTAVANZADAModel.PRODUCTO" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PROYECTAVANZADAModel.PROVEEDOR" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PROYECTAVANZADAModel.SALARIO" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="PROYECTAVANZADAModel.USUARIO" Width="1.5" PointX="7.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PROYECTAVANZADAModel.USUARIOS" Width="1.5" PointX="9.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PROYECTAVANZADAModel.VENDEDOR" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PROYECTAVANZADAModel.VENTA" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PROYECTAVANZADAModel.VENTAXPRODUCTO" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />

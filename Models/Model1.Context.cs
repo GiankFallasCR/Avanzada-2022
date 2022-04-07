@@ -33,7 +33,8 @@ namespace ProyectAvanzada.Models
         public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
         public virtual DbSet<PROVEEDOR> PROVEEDOR { get; set; }
         public virtual DbSet<SALARIO> SALARIO { get; set; }
-        public virtual DbSet<USUARIO> USUARIO { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<USUARIOS> USUARIOS { get; set; }
         public virtual DbSet<VENDEDOR> VENDEDOR { get; set; }
         public virtual DbSet<VENTA> VENTA { get; set; }
         public virtual DbSet<VENTAXPRODUCTO> VENTAXPRODUCTO { get; set; }

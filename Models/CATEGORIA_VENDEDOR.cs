@@ -17,7 +17,7 @@ namespace ProyectAvanzada.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CATEGORIA_VENDEDOR()
         {
-            this.VENDEDORs = new HashSet<VENDEDOR>();
+            this.VENDEDOR = new HashSet<VENDEDOR>();
         }
     
         public int IDCATEGORIA { get; set; }
@@ -25,6 +25,6 @@ namespace ProyectAvanzada.Models
     
         public virtual SALARIO SALARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VENDEDOR> VENDEDORs { get; set; }
+        public virtual ICollection<VENDEDOR> VENDEDOR { get; set; }
     }
 }

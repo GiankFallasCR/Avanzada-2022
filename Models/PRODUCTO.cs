@@ -17,9 +17,9 @@ namespace ProyectAvanzada.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCTO()
         {
-            this.INVENTARIOs = new HashSet<INVENTARIO>();
-            this.VENTAs = new HashSet<VENTA>();
-            this.VENTAXPRODUCTOes = new HashSet<VENTAXPRODUCTO>();
+            this.INVENTARIO = new HashSet<INVENTARIO>();
+            this.VENTA = new HashSet<VENTA>();
+            this.VENTAXPRODUCTO = new HashSet<VENTAXPRODUCTO>();
         }
     
         public int IDPRODUCTO { get; set; }
@@ -28,11 +28,11 @@ namespace ProyectAvanzada.Models
         public double PRECIO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<INVENTARIO> INVENTARIOs { get; set; }
+        public virtual ICollection<INVENTARIO> INVENTARIO { get; set; }
         public virtual PROVEEDOR PROVEEDOR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VENTA> VENTAs { get; set; }
+        public virtual ICollection<VENTA> VENTA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VENTAXPRODUCTO> VENTAXPRODUCTOes { get; set; }
+        public virtual ICollection<VENTAXPRODUCTO> VENTAXPRODUCTO { get; set; }
     }
 }

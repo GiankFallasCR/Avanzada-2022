@@ -75,7 +75,17 @@
           <Property Name="IDSALARIO" Type="int" Nullable="false" />
           <Property Name="SALARIO" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
-        <EntityType Name="USUARIO">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
           <Key>
             <PropertyRef Name="EMAIL" />
           </Key>
@@ -241,7 +251,8 @@
           <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SALARIO" EntityType="Self.SALARIO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VENDEDOR" EntityType="Self.VENDEDOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VENTA" EntityType="Self.VENTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VENTAXPRODUCTO" EntityType="Self.VENTAXPRODUCTO" Schema="dbo" store:Type="Tables" />
@@ -309,7 +320,7 @@
           <Property Name="IDCATEGORIA" Type="Int32" Nullable="false" />
           <Property Name="IDSALARIO" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SALARIO" Relationship="Self.FK_CATEGORIA_VENDEDOR_IDSALARIO" FromRole="CATEGORIA_VENDEDOR" ToRole="SALARIO" />
-          <NavigationProperty Name="VENDEDORs" Relationship="Self.FK_VENDEDOR_IDCATEGORIA" FromRole="CATEGORIA_VENDEDOR" ToRole="VENDEDOR" />
+          <NavigationProperty Name="VENDEDOR" Relationship="Self.FK_VENDEDOR_IDCATEGORIA" FromRole="CATEGORIA_VENDEDOR" ToRole="VENDEDOR" />
         </EntityType>
         <EntityType Name="CLIENTE">
           <Key>
@@ -320,7 +331,7 @@
           <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EMAIL" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TELEFONO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="VENTAs" Relationship="Self.FK_VENTA_IDCLIENTE" FromRole="CLIENTE" ToRole="VENTA" />
+          <NavigationProperty Name="VENTA" Relationship="Self.FK_VENTA_IDCLIENTE" FromRole="CLIENTE" ToRole="VENTA" />
         </EntityType>
         <EntityType Name="FACTURA">
           <Key>
@@ -348,10 +359,10 @@
           <Property Name="IDPROVEEDOR" Type="Int32" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PRECIO" Type="Double" Nullable="false" />
-          <NavigationProperty Name="INVENTARIOs" Relationship="Self.FK_INVENTARIO_IDPRODUCTO" FromRole="PRODUCTO" ToRole="INVENTARIO" />
+          <NavigationProperty Name="INVENTARIO" Relationship="Self.FK_INVENTARIO_IDPRODUCTO" FromRole="PRODUCTO" ToRole="INVENTARIO" />
           <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK_PRODUCTO_IDPROVEEDOR" FromRole="PRODUCTO" ToRole="PROVEEDOR" />
-          <NavigationProperty Name="VENTAs" Relationship="Self.FK_VENTA_IDPRODUCTO" FromRole="PRODUCTO" ToRole="VENTA" />
-          <NavigationProperty Name="VENTAXPRODUCTOes" Relationship="Self.FK_VENTAXPRODUCTO_IDPRODUCTO" FromRole="PRODUCTO" ToRole="VENTAXPRODUCTO" />
+          <NavigationProperty Name="VENTA" Relationship="Self.FK_VENTA_IDPRODUCTO" FromRole="PRODUCTO" ToRole="VENTA" />
+          <NavigationProperty Name="VENTAXPRODUCTO" Relationship="Self.FK_VENTAXPRODUCTO_IDPRODUCTO" FromRole="PRODUCTO" ToRole="VENTAXPRODUCTO" />
         </EntityType>
         <EntityType Name="PROVEEDOR">
           <Key>
@@ -362,7 +373,7 @@
           <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EMAIL" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TELEFONO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PRODUCTOes" Relationship="Self.FK_PRODUCTO_IDPROVEEDOR" FromRole="PROVEEDOR" ToRole="PRODUCTO" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_IDPROVEEDOR" FromRole="PROVEEDOR" ToRole="PRODUCTO" />
         </EntityType>
         <EntityType Name="SALARIO">
           <Key>
@@ -372,7 +383,17 @@
           <Property Name="SALARIO1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CATEGORIA_VENDEDOR" Relationship="Self.FK_CATEGORIA_VENDEDOR_IDSALARIO" FromRole="SALARIO" ToRole="CATEGORIA_VENDEDOR" />
         </EntityType>
-        <EntityType Name="USUARIO">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
           <Key>
             <PropertyRef Name="EMAIL" />
           </Key>
@@ -390,7 +411,7 @@
           <Property Name="EMAIL" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TELEFONO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CATEGORIA_VENDEDOR" Relationship="Self.FK_VENDEDOR_IDCATEGORIA" FromRole="VENDEDOR" ToRole="CATEGORIA_VENDEDOR" />
-          <NavigationProperty Name="VENTAs" Relationship="Self.FK_VENTA_IDVENDEDOR" FromRole="VENDEDOR" ToRole="VENTA" />
+          <NavigationProperty Name="VENTA" Relationship="Self.FK_VENTA_IDVENDEDOR" FromRole="VENDEDOR" ToRole="VENTA" />
         </EntityType>
         <EntityType Name="VENTA">
           <Key>
@@ -401,10 +422,10 @@
           <Property Name="IDVENDEDOR" Type="Int32" Nullable="false" />
           <Property Name="IDCLIENTE" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CLIENTE" Relationship="Self.FK_VENTA_IDCLIENTE" FromRole="VENTA" ToRole="CLIENTE" />
-          <NavigationProperty Name="FACTURAs" Relationship="Self.FK_FACTURA_IDVENTA" FromRole="VENTA" ToRole="FACTURA" />
+          <NavigationProperty Name="FACTURA" Relationship="Self.FK_FACTURA_IDVENTA" FromRole="VENTA" ToRole="FACTURA" />
           <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_VENTA_IDPRODUCTO" FromRole="VENTA" ToRole="PRODUCTO" />
           <NavigationProperty Name="VENDEDOR" Relationship="Self.FK_VENTA_IDVENDEDOR" FromRole="VENTA" ToRole="VENDEDOR" />
-          <NavigationProperty Name="VENTAXPRODUCTOes" Relationship="Self.FK_VENTAXPRODUCTO_IDVENTA" FromRole="VENTA" ToRole="VENTAXPRODUCTO" />
+          <NavigationProperty Name="VENTAXPRODUCTO" Relationship="Self.FK_VENTAXPRODUCTO_IDVENTA" FromRole="VENTA" ToRole="VENTAXPRODUCTO" />
         </EntityType>
         <EntityType Name="VENTAXPRODUCTO">
           <Key>
@@ -541,55 +562,56 @@
         <EntityContainer Name="PrograAvanzadaProyectoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AUDITORIA_SALARIO" EntityType="Self.AUDITORIA_SALARIO" />
           <EntitySet Name="CATEGORIA_VENDEDOR" EntityType="Self.CATEGORIA_VENDEDOR" />
-          <EntitySet Name="CLIENTEs" EntityType="Self.CLIENTE" />
-          <EntitySet Name="FACTURAs" EntityType="Self.FACTURA" />
-          <EntitySet Name="INVENTARIOs" EntityType="Self.INVENTARIO" />
-          <EntitySet Name="PRODUCTOes" EntityType="Self.PRODUCTO" />
-          <EntitySet Name="PROVEEDORs" EntityType="Self.PROVEEDOR" />
-          <EntitySet Name="SALARIOs" EntityType="Self.SALARIO" />
-          <EntitySet Name="USUARIOs" EntityType="Self.USUARIO" />
-          <EntitySet Name="VENDEDORs" EntityType="Self.VENDEDOR" />
-          <EntitySet Name="VENTAs" EntityType="Self.VENTA" />
-          <EntitySet Name="VENTAXPRODUCTOes" EntityType="Self.VENTAXPRODUCTO" />
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+          <EntitySet Name="FACTURA" EntityType="Self.FACTURA" />
+          <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
+          <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" />
+          <EntitySet Name="SALARIO" EntityType="Self.SALARIO" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <EntitySet Name="VENDEDOR" EntityType="Self.VENDEDOR" />
+          <EntitySet Name="VENTA" EntityType="Self.VENTA" />
+          <EntitySet Name="VENTAXPRODUCTO" EntityType="Self.VENTAXPRODUCTO" />
           <AssociationSet Name="FK_CATEGORIA_VENDEDOR_IDSALARIO" Association="Self.FK_CATEGORIA_VENDEDOR_IDSALARIO">
-            <End Role="SALARIO" EntitySet="SALARIOs" />
+            <End Role="SALARIO" EntitySet="SALARIO" />
             <End Role="CATEGORIA_VENDEDOR" EntitySet="CATEGORIA_VENDEDOR" />
           </AssociationSet>
           <AssociationSet Name="FK_VENDEDOR_IDCATEGORIA" Association="Self.FK_VENDEDOR_IDCATEGORIA">
             <End Role="CATEGORIA_VENDEDOR" EntitySet="CATEGORIA_VENDEDOR" />
-            <End Role="VENDEDOR" EntitySet="VENDEDORs" />
+            <End Role="VENDEDOR" EntitySet="VENDEDOR" />
           </AssociationSet>
           <AssociationSet Name="FK_VENTA_IDCLIENTE" Association="Self.FK_VENTA_IDCLIENTE">
-            <End Role="CLIENTE" EntitySet="CLIENTEs" />
-            <End Role="VENTA" EntitySet="VENTAs" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="VENTA" EntitySet="VENTA" />
           </AssociationSet>
           <AssociationSet Name="FK_FACTURA_IDVENTA" Association="Self.FK_FACTURA_IDVENTA">
-            <End Role="VENTA" EntitySet="VENTAs" />
-            <End Role="FACTURA" EntitySet="FACTURAs" />
+            <End Role="VENTA" EntitySet="VENTA" />
+            <End Role="FACTURA" EntitySet="FACTURA" />
           </AssociationSet>
           <AssociationSet Name="FK_INVENTARIO_IDPRODUCTO" Association="Self.FK_INVENTARIO_IDPRODUCTO">
-            <End Role="PRODUCTO" EntitySet="PRODUCTOes" />
-            <End Role="INVENTARIO" EntitySet="INVENTARIOs" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
           </AssociationSet>
           <AssociationSet Name="FK_PRODUCTO_IDPROVEEDOR" Association="Self.FK_PRODUCTO_IDPROVEEDOR">
-            <End Role="PROVEEDOR" EntitySet="PROVEEDORs" />
-            <End Role="PRODUCTO" EntitySet="PRODUCTOes" />
+            <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
           </AssociationSet>
           <AssociationSet Name="FK_VENTA_IDPRODUCTO" Association="Self.FK_VENTA_IDPRODUCTO">
-            <End Role="PRODUCTO" EntitySet="PRODUCTOes" />
-            <End Role="VENTA" EntitySet="VENTAs" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="VENTA" EntitySet="VENTA" />
           </AssociationSet>
           <AssociationSet Name="FK_VENTAXPRODUCTO_IDPRODUCTO" Association="Self.FK_VENTAXPRODUCTO_IDPRODUCTO">
-            <End Role="PRODUCTO" EntitySet="PRODUCTOes" />
-            <End Role="VENTAXPRODUCTO" EntitySet="VENTAXPRODUCTOes" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="VENTAXPRODUCTO" EntitySet="VENTAXPRODUCTO" />
           </AssociationSet>
           <AssociationSet Name="FK_VENTA_IDVENDEDOR" Association="Self.FK_VENTA_IDVENDEDOR">
-            <End Role="VENDEDOR" EntitySet="VENDEDORs" />
-            <End Role="VENTA" EntitySet="VENTAs" />
+            <End Role="VENDEDOR" EntitySet="VENDEDOR" />
+            <End Role="VENTA" EntitySet="VENTA" />
           </AssociationSet>
           <AssociationSet Name="FK_VENTAXPRODUCTO_IDVENTA" Association="Self.FK_VENTAXPRODUCTO_IDVENTA">
-            <End Role="VENTA" EntitySet="VENTAs" />
-            <End Role="VENTAXPRODUCTO" EntitySet="VENTAXPRODUCTOes" />
+            <End Role="VENTA" EntitySet="VENTA" />
+            <End Role="VENTAXPRODUCTO" EntitySet="VENTAXPRODUCTO" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -618,7 +640,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CLIENTEs">
+          <EntitySetMapping Name="CLIENTE">
             <EntityTypeMapping TypeName="PROYECTAVANZADAModel.CLIENTE">
               <MappingFragment StoreEntitySet="CLIENTE">
                 <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
@@ -629,7 +651,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FACTURAs">
+          <EntitySetMapping Name="FACTURA">
             <EntityTypeMapping TypeName="PROYECTAVANZADAModel.FACTURA">
               <MappingFragment StoreEntitySet="FACTURA">
                 <ScalarProperty Name="IDFACTURA" ColumnName="IDFACTURA" />
@@ -637,7 +659,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="INVENTARIOs">
+          <EntitySetMapping Name="INVENTARIO">
             <EntityTypeMapping TypeName="PROYECTAVANZADAModel.INVENTARIO">
               <MappingFragment StoreEntitySet="INVENTARIO">
                 <ScalarProperty Name="IDINVENTARIO" ColumnName="IDINVENTARIO" />
@@ -647,7 +669,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PRODUCTOes">
+          <EntitySetMapping Name="PRODUCTO">
             <EntityTypeMapping TypeName="PROYECTAVANZADAModel.PRODUCTO">
               <MappingFragment StoreEntitySet="PRODUCTO">
                 <ScalarProperty Name="IDPRODUCTO" ColumnName="IDPRODUCTO" />
@@ -657,7 +679,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PROVEEDORs">
+          <EntitySetMapping Name="PROVEEDOR">
             <EntityTypeMapping TypeName="PROYECTAVANZADAModel.PROVEEDOR">
               <MappingFragment StoreEntitySet="PROVEEDOR">
                 <ScalarProperty Name="IDPROVEEDOR" ColumnName="IDPROVEEDOR" />
@@ -668,7 +690,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SALARIOs">
+          <EntitySetMapping Name="SALARIO">
             <EntityTypeMapping TypeName="PROYECTAVANZADAModel.SALARIO">
               <MappingFragment StoreEntitySet="SALARIO">
                 <ScalarProperty Name="IDSALARIO" ColumnName="IDSALARIO" />
@@ -676,15 +698,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="USUARIOs">
-            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.USUARIO">
-              <MappingFragment StoreEntitySet="USUARIO">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="PROYECTAVANZADAModel.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="PASWORD" ColumnName="PASWORD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VENDEDORs">
+          <EntitySetMapping Name="VENDEDOR">
             <EntityTypeMapping TypeName="PROYECTAVANZADAModel.VENDEDOR">
               <MappingFragment StoreEntitySet="VENDEDOR">
                 <ScalarProperty Name="IDVENDEDOR" ColumnName="IDVENDEDOR" />
@@ -696,7 +729,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VENTAs">
+          <EntitySetMapping Name="VENTA">
             <EntityTypeMapping TypeName="PROYECTAVANZADAModel.VENTA">
               <MappingFragment StoreEntitySet="VENTA">
                 <ScalarProperty Name="IDVENTA" ColumnName="IDVENTA" />
@@ -706,7 +739,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VENTAXPRODUCTOes">
+          <EntitySetMapping Name="VENTAXPRODUCTO">
             <EntityTypeMapping TypeName="PROYECTAVANZADAModel.VENTAXPRODUCTO">
               <MappingFragment StoreEntitySet="VENTAXPRODUCTO">
                 <ScalarProperty Name="IDVENTA" ColumnName="IDVENTA" />
@@ -730,7 +763,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
